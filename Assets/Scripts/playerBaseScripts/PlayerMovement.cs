@@ -18,24 +18,24 @@ public class PlayerMovement : PlayerMain{
     public void update(float d){
 
         // Debug.Log("moving update working");
-        Debug.Log(move);
+        // Debug.Log(move);
 
-        if (move.Equals(new Vector2(0, 0))) return;
+        if (playerStateManager.move.Equals(new Vector2(0, 0))) return;
 
-        Vector3 position = player.transform.position;
+        Vector3 position = playerStateManager.transform.position;
         
         // lastPosition = position;
         // var direction = position - lastPosition;
         // var localDirection = position.InverseTransformDirection(direction);
         
 
-        float xDiff = move.x;
-        float yDiff = move.y;
+        float xDiff = playerStateManager.move.x;
+        float yDiff = playerStateManager.move.y;
         float angle = (float)(Mathf.Atan2(yDiff, xDiff));
 
         float dist;
-        if(isMoving == movementState.Run){
-            dist=sprintModifier;
+        if(playerStateManager.movementType == movementState.Run){
+            dist=playerStateManager.sprintModifier;
         }else{
         dist = 1;
         }
@@ -45,7 +45,7 @@ public class PlayerMovement : PlayerMain{
         // }
 
         Vector2 reconstructedMovement = new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
-        player.GetComponent<Rigidbody2D>().MovePosition(new Vector2(position.x, position.y) + ((reconstructedMovement * speed) * d));
+        rb.MovePosition(new Vector2(position.x, position.y) + ((reconstructedMovement * playerStateManager.speed) * d));
     }
 
 }

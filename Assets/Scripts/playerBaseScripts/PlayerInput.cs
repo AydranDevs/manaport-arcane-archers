@@ -11,11 +11,11 @@ public class PlayerInput : PlayerMain{
     }
     
     public void update(){
-        move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); 
-        if(!move.Equals(new Vector2(0,0))){
-            isMoving = Input.GetKey(KeyCode.LeftShift) ? movementState.Run : movementState.Walk;   
+        playerStateManager.move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); 
+        if(!playerStateManager.move.Equals(new Vector2(0,0))){
+            playerStateManager.movementType = Input.GetKey(KeyCode.LeftShift) ? movementState.Run : movementState.Walk;   
+        }else{
+            playerStateManager.movementType = movementState.Idle;
         }
-
-        // Debug.Log(move);
     }
 }
