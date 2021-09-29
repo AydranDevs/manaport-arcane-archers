@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum menuState { None, Inv }
+public enum GameState { Main, Inv }
 
-public class GameStateManager : MonoBehaviour{
-    
-    public menuState inMenu = menuState.None; // sets "inMenu" to None / Initializes menuState
- 
+public class GameStateManager : MonoBehaviour
+{
+    // the game should start in the "main" (walk around) state
+    // we will change this when opening a menu, loading, etc
+    public GameState state = GameState.Main;
 }

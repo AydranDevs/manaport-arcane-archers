@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : PlayerMain{
-    void Update(){
-        if (gameStateManager.inMenu == menuState.None){
-           // Debug.Log("No menus open (PlayerInput)");
-            update();
-        }
+// This script, as it exsits now, might be better to just put in the PlayerMovement script instead.
+public class PlayerInput : MonoBehaviour
+{
+    private GameStateManager gameStateManager;
+    private PlayerMovement playerMovement;
+
+    void Start()
+    {
+        gameStateManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManager>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
-    
-    public void update(){
-        playerStateManager.move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); 
-        if(!playerStateManager.move.Equals(new Vector2(0,0))){
-            playerStateManager.movementType = Input.GetKey(KeyCode.LeftShift) ? movementState.Run : movementState.Walk;   
-        }else{
-            playerStateManager.movementType = movementState.Idle;
+
+    void Update()
+    {
+        if (gameStateManager.state == GameState.Main)
+        {
+            playerMovement.Move(Time.fixedDeltaTime);
         }
     }
 }
