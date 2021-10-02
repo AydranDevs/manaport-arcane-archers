@@ -21,7 +21,7 @@ public class PlayerCam : MonoBehaviour
             Vector2 pos = transform.position;
             Vector2 targetpos = target.position;
 
-            Vector3 slerped = Vector3.Slerp(pos, targetpos, Time.deltaTime * speed);
+            Vector3 slerped = Vector3.Slerp(pos, targetpos, Time.fixedDeltaTime * speed);
 
             slerped.z = transform.position.z;
 

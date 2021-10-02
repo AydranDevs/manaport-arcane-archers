@@ -25,7 +25,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void AnimatePlayer()
     {
-        Debug.Log(Player.move.y);
+        // Debug.Log(Player.move.y);
         if (Mathf.Abs(Player.move.x) < 0.05 || Mathf.Abs(Player.move.y) < 0.05)
         {
             animator.SetFloat("y", Player.move.y);
