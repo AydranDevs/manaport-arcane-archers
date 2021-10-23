@@ -21,11 +21,18 @@ public class PlayerCam : MonoBehaviour
             Vector2 pos = transform.position;
             Vector2 targetpos = target.position;
 
-            Vector3 slerped = Vector3.Slerp(pos, targetpos, Time.fixedDeltaTime * speed);
+            Vector3 slerped = Vector3.Slerp(pos, targetpos, 100 * speed);
 
             slerped.z = transform.position.z;
 
             transform.position = slerped;
+
+            // mouse position shit but with calculations this time
+
+            Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
+            mouse.z = 0;
+
+            // Debug.Log(mouse);
         }
     }
 }

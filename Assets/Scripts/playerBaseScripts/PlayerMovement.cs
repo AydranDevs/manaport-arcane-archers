@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private Player Player;
     private GameStateManager gameStateManager;
 
+    public float runDuration;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -48,6 +50,24 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 reconstructedMovement = new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
         rb.MovePosition(new Vector2(position.x, position.y) + ((reconstructedMovement * Player.speed) * d));
+    }
+
+    public void Update(){
+        
+        // Skidding
+
+        if(Player.movementType == MovementState.Run){
+            runDuration = runDuration + Time.deltaTime;
+        }
+
+        if(runDuration >= Player.skidThreshold){
+            Player.willSkid = true;
+        }
+
+        if(Player.movementType != MovementState.Run){
+            runDuration = 0;
+            Player.willSkid = false;
+        }
     }
 
 }
