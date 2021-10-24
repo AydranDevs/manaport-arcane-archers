@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(float d)
     {
+        // Debug.Log("MOVING");
         Player.move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (!Player.move.Equals(new Vector2(0, 0)))

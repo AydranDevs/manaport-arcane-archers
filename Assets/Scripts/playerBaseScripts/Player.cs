@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum MovementState { Idle, Walk, Run, Skid }
 public enum DirectionState { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest }
