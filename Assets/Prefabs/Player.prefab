@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 2122486679918832985}
   - component: {fileID: 2122486679918832964}
   - component: {fileID: 2122486679918832966}
-  - component: {fileID: 2122486679918832961}
+  - component: {fileID: 37624381974631257}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -296,7 +296,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0637109, y: 0.40353656}
   m_EdgeRadius: 0
---- !u!114 &2122486679918832961
+--- !u!114 &37624381974631257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -305,20 +305,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2122486679918832984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Script: {fileID: 11500000, guid: 1453f990b6290554cb7f19f528fac1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_HasRenderer: 1
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 000000001d19d201
-  m_ShapePath:
-  - {x: -0.0044350233, y: -1.0244799, z: 0}
-  - {x: -0.44298214, y: -1.1164112, z: 0}
-  - {x: -0.007042965, y: -1.2063298, z: 0}
-  - {x: 0.44281068, y: -1.1170216, z: 0}
-  m_ShapePathHash: 783284686
-  m_Mesh: {fileID: 0}
-  m_InstanceId: 23388
+  sortingOrderBase: 5000
