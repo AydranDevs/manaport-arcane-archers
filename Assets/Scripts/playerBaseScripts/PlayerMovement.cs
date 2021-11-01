@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private Player Player;
     private GameStateManager gameStateManager;
 
+    public Vector2 reconstructedMovement;
+    public float angle;
+
     public float runDuration;
 
     void Start()
@@ -36,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
         float xDiff = Player.move.x;
         float yDiff = Player.move.y;
-        float angle = (float)(Mathf.Atan2(yDiff, xDiff));
+        angle = (float)(Mathf.Atan2(yDiff, xDiff));
 
         float dist;
         if (Player.movementType == MovementState.Run)
@@ -48,7 +51,10 @@ public class PlayerMovement : MonoBehaviour
             dist = 1;
         }
 
-        Vector2 reconstructedMovement = new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
+        reconstructedMovement = new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
+
+        // NOTE: Figure out how to keep Laurie from moving while using any Auxilary Movement ability.
+
         rb.MovePosition(new Vector2(position.x, position.y) + ((reconstructedMovement * Player.speed) * d));
     }
 

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,8 +29,10 @@ public class PlayerCam : MonoBehaviour
 
             // mouse position shit but with calculations this time
 
-            Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
-            mouse.z = 0;
+            // Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
+            // mouse.z = 0;
+
+            // Vector3 betweenPoint = (mouse.x + target.x) / 2;
 
             // Debug.Log(mouse);
         }
