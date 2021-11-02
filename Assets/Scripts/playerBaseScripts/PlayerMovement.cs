@@ -56,24 +56,25 @@ public class PlayerMovement : MonoBehaviour
         // NOTE: Figure out how to keep Laurie from moving while using any Auxilary Movement ability.
 
         rb.MovePosition(new Vector2(position.x, position.y) + ((reconstructedMovement * Player.speed) * d));
-    }
 
-    public void Update(){
-        
         // Skidding
 
         if(Player.movementType == MovementState.Run){
-            runDuration = runDuration + Time.deltaTime;
+            runDuration += Time.deltaTime;
+        }else {
+            runDuration = 0;
+            Player.willSkid = false;
         }
 
         if(runDuration >= Player.skidThreshold){
             Player.willSkid = true;
         }
 
-        if(Player.movementType != MovementState.Run){
-            runDuration = 0;
-            Player.willSkid = false;
+        if(Player.willSkid == true) {
+            if (Vector3.Dot(reconstructedMovement, position) < 0) {
+                // Debug.Log("Skid!");
+                Player.movementType = MovementState.Skid;
+            }
         }
     }
-
 }
