@@ -7,18 +7,21 @@ public class PlayerInput : MonoBehaviour
 {
     private GameStateManager gameStateManager;
     private PlayerMovement playerMovement;
+    private Player player;
 
     void Start()
     {
         gameStateManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManager>();
         playerMovement = GetComponent<PlayerMovement>();
+        player = GetComponent<Player>();
     }
 
     void Update()
     {
-        if (gameStateManager.state == GameState.Main)
-        {
-            playerMovement.Move(Time.fixedDeltaTime);
+        if (gameStateManager.state == GameState.Main) {
+            if (player.ability != AbilityState.AuxilaryMovement) {
+                playerMovement.Move(Time.fixedDeltaTime);
+            }
         }
     }
 }
