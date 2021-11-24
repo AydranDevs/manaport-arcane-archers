@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
 {
     private GameStateManager gameStateManager;
     private PlayerMovement playerMovement;
+    private Spellcaster spellcaster;
     private Player player;
 
     void Start()
@@ -14,6 +15,7 @@ public class PlayerInput : MonoBehaviour
         gameStateManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManager>();
         playerMovement = GetComponent<PlayerMovement>();
         player = GetComponent<Player>();
+        spellcaster = GetComponent<Spellcaster>();
     }
 
     void Update()
@@ -22,6 +24,7 @@ public class PlayerInput : MonoBehaviour
             if (player.ability != AbilityState.AuxilaryMovement) {
                 playerMovement.Move(Time.fixedDeltaTime);
             }
+            // Spellcaster.RotateCursor();
         }
     }
 }

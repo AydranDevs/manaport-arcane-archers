@@ -8,11 +8,14 @@ public enum FacingState { North, East, South, West }
 public enum AbilityState { None, AuxilaryMovement, SpellcastPrimary, SpellcastSecondary }
 public enum AuxilaryMovementType { Spindash, OrbDash, Lightspeed }
 
+public enum PrimarySpellType { Automa, Blasteur, Burston }
+public enum PrimarySpellElement { Arcane, Pyro, Cryo, Toxi, Bolt }
+public enum SecondarySpellType { Automa, Blasteur, Burston }
+public enum SecondarySpellElement { Arcane, Pyro, Cryo, Toxi, Bolt }
+
 // This class could hold all the values for player which would make for a nice singular place for everything
 // to access them.  Sorta like the PlayerStateManager before
 
-// But it might make more sense to move these values to the script that use them, like putting the speed in the
-// PlayerMovement script
 public class Player : MonoBehaviour
 {
     // Movement
@@ -30,6 +33,14 @@ public class Player : MonoBehaviour
     public AuxilaryMovementType auxilaryType = AuxilaryMovementType.Spindash; //sets "auxilaryType" to Spindash / Initializes AuxilaryMovementType
 
     // Controls
+
+    // Spellcasting
+    public PrimarySpellType primary = PrimarySpellType.Blasteur;
+    public PrimarySpellElement primaryElement = PrimarySpellElement.Arcane;
+    
+    public SecondarySpellType secondary = SecondarySpellType.Blasteur;
+    public SecondarySpellElement secondaryElement = SecondarySpellElement.Arcane;
+    
 
 
     

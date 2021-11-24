@@ -8,6 +8,9 @@ TagManager:
   - PlayerAnimator
   - PlayerManager
   - SpindustPS
+  - Camera
+  - Spellcaster
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

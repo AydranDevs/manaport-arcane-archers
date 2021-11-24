@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float angle;
 
     public float runDuration;
+    public int horizontal;
+    public int vertical;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -21,7 +23,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Move(float d) {
-        Player.move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if(Input.GetAxis("Horizontal") > 0f) {
+            horizontal = 1;
+        }else if(Input.GetAxis("Horizontal") < 0f) {
+            horizontal = -1;
+        }else {
+            horizontal = 0;
+        }
+        if(Input.GetAxis("Vertical") > 0f) {
+            vertical = 1;
+        }else if(Input.GetAxis("Vertical") < 0f) {
+            vertical = -1;
+        }else {
+            vertical = 0;
+        }
+
+
+        Player.move = new Vector2(horizontal, vertical);
 
         if (!Player.move.Equals(new Vector2(0, 0))) {
             Player.movementType = Input.GetKey(KeyCode.LeftShift) ? MovementState.Run : MovementState.Walk;
