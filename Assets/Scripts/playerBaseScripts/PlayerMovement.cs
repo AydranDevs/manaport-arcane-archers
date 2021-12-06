@@ -7,8 +7,11 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     private Player Player;
     private GameStateManager gameStateManager;
+    // public ParticleSystem ps;
     public VectorValue vectorValue;
 
+
+    [HideInInspector]
     public Vector2 reconstructedMovement;
     public float angle;
 
@@ -19,10 +22,31 @@ public class PlayerMovement : MonoBehaviour
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         Player = GetComponent<Player>();
+        // ps = GameObject.FindGameObjectWithTag("DashdustPS").GetComponent<ParticleSystem>();
         Player.transform.position = vectorValue.initialValue;
     }
 
     public void Move(float d) {
+        
+        // Skidding
+
+        if(Player.movementType == MovementState.Run){
+            runDuration = runDuration + Time.deltaTime;
+            runDuration += Time.deltaTime;
+        }else {
+            runDuration = 0;
+            Player.sprintModifier = 1.75f;
+            Player.willSkid = false;
+            Player.isDashing = false;
+        }
+
+        if(runDuration >= Player.skidThreshold){
+            Player.willSkid = true;
+            Player.isDashing = true;
+            Player.sprintModifier = 2.5f;
+            // ps.Play();
+        }
+
         if(Input.GetAxis("Horizontal") > 0f) {
             horizontal = 1;
         }else if(Input.GetAxis("Horizontal") < 0f) {

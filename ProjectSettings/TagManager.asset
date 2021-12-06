@@ -11,6 +11,8 @@ TagManager:
   - Camera
   - Spellcaster
   - PlayerBullet
+  - DashDustPS
+  - SpellOriginPos
   layers:
   - Default
   - TransparentFX

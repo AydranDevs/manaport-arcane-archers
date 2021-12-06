@@ -24,9 +24,10 @@ public class Player : MonoBehaviour
     public FacingState facing = FacingState.South; // sets "facing" to South / Initializes FacingState
     public Vector2 move = new Vector2(0, 0); // Used in playerMovement, determines the directin the player is moving
     public float speed = 0.1f; // Used in playerMovement, Units/sec
-    public float sprintModifier = 1.25f; // Used in playerMovement, multiplies speed by value set here
-    public float skidThreshold = 2; // Used in playerMovement, how long the player must be sprinting for to make them skid to a stop and turn around upon stopping or pressing the opposite direction.
+    public float sprintModifier = 1.75f; // Used in playerMovement, multiplies speed by value set here
+    public float skidThreshold = 8; // Used in playerMovement, how long the player must be sprinting for to make them skid to a stop and turn around upon stopping or pressing the opposite direction.
     public bool willSkid = false;
+    public bool isDashing = false;
 
     // Ability
     public AbilityState ability = AbilityState.None; // sets "ability" to None / Initializes AbilityState

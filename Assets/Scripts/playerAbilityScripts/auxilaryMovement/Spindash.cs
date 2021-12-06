@@ -8,7 +8,7 @@ public class Spindash : MonoBehaviour {
     private Rigidbody2D rb;
     private PlayerMovement playerMovement;
 
-    private ParticleSystem particleSystem;
+    // private ParticleSystem particleSystem;
 
     public float range; // default 5
     public float speed; // default 5
@@ -23,13 +23,13 @@ public class Spindash : MonoBehaviour {
         playerAbilities = GetComponent<PlayerAbilities>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
-        particleSystem = GameObject.FindGameObjectWithTag("SpindustPS").GetComponent<ParticleSystem>();
+        // particleSystem = GameObject.FindGameObjectWithTag("SpindustPS").GetComponent<ParticleSystem>();
         time = timeLimiit;
     }
 
     private void Update() {
         if (player.auxilaryType == AuxilaryMovementType.Spindash && player.ability == AbilityState.AuxilaryMovement) {
-            particleSystem.Play();
+            // particleSystem.Play();
             dashTarget = player.transform.position + (Vector3)playerMovement.reconstructedMovement * range;
 
             time -= Time.deltaTime;

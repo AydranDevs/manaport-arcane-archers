@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CursorPivot : MonoBehaviour {
     private GameObject player;
+    [HideInInspector]
+    public Vector3 difference;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -12,7 +14,7 @@ public class CursorPivot : MonoBehaviour {
     
     void FixedUpdate() {
         
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
  
         difference.Normalize();
  
