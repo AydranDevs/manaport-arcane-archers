@@ -25,8 +25,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void AnimatePlayer()
     {
-        // Debug.Log(Player.move.y);
-        if (Mathf.Abs(Player.move.x) < 0.05 || Mathf.Abs(Player.move.y) < 0.05)
+        if (Player.move.sqrMagnitude > 0f)
         {
             animator.SetFloat("y", Player.move.y);
             animator.SetFloat("x", Player.move.x);
@@ -68,9 +67,12 @@ public class PlayerAnimation : MonoBehaviour
             animator.SetBool("skidding", false);
         }
         
-        if (Player.auxilaryType == AuxilaryMovementType.Spindash && Player.ability == AbilityState.AuxilaryMovement) {
+        if (Player.auxilaryType == AuxilaryMovementType.Spindash && Player.ability == AbilityState.AuxilaryMovement) 
+        {
             animator.SetBool("spindashing", true);
-        }else {
+        }
+        else 
+        {
             animator.SetBool("spindashing", false);
         }
     }
