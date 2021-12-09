@@ -34,6 +34,7 @@ public class Burston : MonoBehaviour{
         public float critDamage;
 
         public bool status;
+        public string element;
         public float statusChance;
         public float dps;
 
@@ -102,6 +103,7 @@ public class Burston : MonoBehaviour{
             critDamage = critDamage,
 
             status = status,
+            element = e.element,
             statusChance = statusChance,
             dps = dps,
 

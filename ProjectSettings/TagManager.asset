@@ -13,6 +13,7 @@ TagManager:
   - PlayerBullet
   - DashDustPS
   - SpellOriginPos
+  - DummyScript
   layers:
   - Default
   - TransparentFX
