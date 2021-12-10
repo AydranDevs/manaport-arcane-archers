@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
     private Burston burston;
+    private Automa automa;
     
     private Vector3 shootDir;
 
     public float damage;
     public float cooldown;
+    public float spread;
+    public float fireCount;
     public int cost;
     public float critChance;
     public float critDamage;
@@ -21,8 +24,10 @@ public class Bullet : MonoBehaviour {
 
     private void Awake() {
         burston = GameObject.FindGameObjectWithTag("Spellcaster").GetComponent<Burston>();
+        automa = GameObject.FindGameObjectWithTag("Spellcaster").GetComponent<Automa>();
 
         burston.OnBurstonCast += BurstonBullet_OnBurstonCast;
+        automa.OnAutomaCast += AutomaBullet_OnAutomaCast;
     }
 
     public void BurstonBullet_OnBurstonCast(object sender, Burston.OnBurstonCastEventArgs e) {
@@ -39,6 +44,24 @@ public class Bullet : MonoBehaviour {
         status = e.status;
         element = e.element;
         
+        statusChance = e.statusChance;
+        dps = e.dps;
+    }
+
+    public void AutomaBullet_OnAutomaCast(object sender, Automa.OnAutomaCastEventArgs e) {
+        shootDir = e.shootDir;
+
+        damage = e.baseDamage;
+        cooldown = 0f;
+        spread = e.baseDamage;
+        fireCount = e.baseFireCount;
+        cost = e.baseCost;
+        critChance = e.critChance;
+        critDamage = e.critDamage;
+
+        status = e.status;
+        element = e.element;
+
         statusChance = e.statusChance;
         dps = e.dps;
     }

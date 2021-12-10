@@ -426,13 +426,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDamage: 0
   baseSpread: 0
-  baseFireRate: 0
+  baseFireCount: 0
   baseCost: 0
   critChance: 0
   critDamage: 0
   status: 0
   statusChance: 0
   dps: 0
+  PFBullet: {fileID: 7341119615130547138, guid: 854bda8491f1ba9419e802b94f5ea2ff, type: 3}
 --- !u!114 &7289132518774976547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +454,7 @@ MonoBehaviour:
   status: 0
   statusChance: 0
   dps: 0
+  PFBullet: {fileID: 7341119615130547138, guid: 854bda8491f1ba9419e802b94f5ea2ff, type: 3}
 --- !u!114 &3937013360354300250
 MonoBehaviour:
   m_ObjectHideFlags: 0

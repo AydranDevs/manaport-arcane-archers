@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Burston : MonoBehaviour{
+public class Burston : MonoBehaviour {
     private PrimarySpell primary;
     private SecondarySpell secondary;
     private Controls controls;
@@ -49,6 +49,7 @@ public class Burston : MonoBehaviour{
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         primary.OnPrimaryFire += CastBurston_OnPrimaryFire;
+        secondary.OnSecondaryFire += CastBurston_OnSecondaryFire;
     }
 
     private void CastBurston_OnPrimaryFire(object sender, PrimarySpell.OnPrimaryFireEventArgs e) {
@@ -109,6 +110,67 @@ public class Burston : MonoBehaviour{
 
             shootDir = shootDir
         });
+    }
+
+    private void CastBurston_OnSecondaryFire(object sender, SecondarySpell.OnSecondaryFireEventArgs e) {
+        if (e.type != "Burston") return;
+        Debug.Log("Burston Fired! Type: " + e.element);
+
+        // Calculating what direction the bullet will go in when fired
+        // (Where da bullet goin?)
+        
+        Debug.Log("Burston Fired.");
+        Vector3 originPos = GameObject.FindGameObjectWithTag("SpellOriginPos").transform.position;
+        Vector3 shootPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Transform bulletTransform = Instantiate(PFBullet, originPos, Quaternion.identity);
+
+        shootDir = (shootPos - originPos).normalized;
+        
+        // bulletTransform.GetComponent<Bullet>().Setup(shootDir);
+
+        // Sets the stats for the bullet fired 
+        // (How da bullet doin?)
+
+        if (e.element == "Arcane") { // Base stats for an Arcane Burston spellstone
+            baseDamage = 1.5f;
+            baseCooldown = 0.2f;
+            baseCost = 1;
+            critChance = 0.10f;
+            critDamage = 3f;
+            status = false;
+
+            statusChance = 0f;
+            dps = 0f;
+        }else { // Base stats for an Elemental Burston spellstone
+            baseDamage = 2f;
+            baseCooldown = 0.2f;
+            baseCost = 1;
+            critChance = 0.10f;
+            critDamage = 4f;
+            status = true;
+
+            statusChance = 0.25f;
+            dps = 2f;
+        }
+
+        OnBurstonCast?.Invoke(this, new OnBurstonCastEventArgs {
+            // Send spell attributes to bullets fired
+            
+            baseDamage = baseDamage,
+            baseCooldown = baseCooldown,
+            baseCost = baseCost,
+            critChance = critChance,
+            critDamage = critDamage,
+
+            status = status,
+            element = e.element,
+            statusChance = statusChance,
+            dps = dps,
+
+            shootDir = shootDir
+        });
+
     }
 
     /* public void SetStats(bool isPrimary) {

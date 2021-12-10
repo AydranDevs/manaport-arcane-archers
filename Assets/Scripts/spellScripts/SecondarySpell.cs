@@ -1,14 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondarySpell : Spell {
+public class SecondarySpell : MonoBehaviour {
+    public event EventHandler<OnSecondaryFireEventArgs> OnSecondaryFire;
+    public class OnSecondaryFireEventArgs : EventArgs {
+        public string type;
+        public string element;
+    }
+
     private Player player;
     private GameStateManager gameStateManager;
 
     private Blasteur blasteur;
     private Burston burston;
     private Automa automa;
+
+    private string type;
+    private string element;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -27,42 +37,41 @@ public class SecondarySpell : Spell {
         if (gameStateManager.state == GameState.Main) {
             CheckSpellType();
             CheckElementType();
-
-            if (player.ability == AbilityState.SpellcastSecondary) {
-                // burston.SetStats(false);
-                automa.SetStats(false);
-                blasteur.SetStats(false);
-            }
         }
-
-        // Debug.Log((spellInfo.type) + (spellInfo.element));
     }
 
-    // Checks Primary Spell Type enum in Player.cs whenever this function is called
+    // Checks Secondary Spell Type enum in Player.cs whenever this function is called
     
     private void CheckSpellType() {
-        if (player.primary == PrimarySpellType.Automa) {
-            spellInfo.type = "Automa";
-        }else if (player.primary == PrimarySpellType.Blasteur) {
-            spellInfo.type = "Blasteur";
-        }else if (player.primary == PrimarySpellType.Burston) {
-            spellInfo.type = "Burston";
+        if (player.secondary == SecondarySpellType.Automa) {
+            type = "Automa";
+        }else if (player.secondary == SecondarySpellType.Blasteur) {
+            type = "Blasteur";
+        }else if (player.secondary == SecondarySpellType.Burston) {
+            type = "Burston";
         }
     }
 
-    // Check Primary Spell Element enum in Player.cs whenever this function is called
+    // Check Secondary Spell Element enum in Player.cs whenever this function is called
 
     private void CheckElementType() {
-        if (player.primaryElement == PrimarySpellElement.Pyro) {
-            spellInfo.element = "Pyro";
-        }else if (player.primaryElement == PrimarySpellElement.Cryo) {
-            spellInfo.element = "Cryo";
-        }else if (player.primaryElement == PrimarySpellElement.Toxi) {
-            spellInfo.element = "Toxi";
-        }else if (player.primaryElement == PrimarySpellElement.Bolt) {
-            spellInfo.element = "Bolt";
+        if (player.secondaryElement == SecondarySpellElement.Pyro) {
+            element = "Pyro";
+        }else if (player.secondaryElement == SecondarySpellElement.Cryo) {
+            element = "Cryo";
+        }else if (player.secondaryElement == SecondarySpellElement.Toxi) {
+            element = "Toxi";
+        }else if (player.secondaryElement == SecondarySpellElement.Bolt) {
+            element = "Bolt";
         }else { // Assumes element type as "Arcane" if not overriden by the other elements. (This may be a little small brained)
-            spellInfo.element = "Arcane";
+            element = "Arcane";
+        }
+    }
+
+    private void Update() {
+        if (Input.GetMouseButtonDown(1)) {
+            // Player used Secondary spell
+            OnSecondaryFire?.Invoke(this, new OnSecondaryFireEventArgs { type = type, element = element });
         }
     }
 }

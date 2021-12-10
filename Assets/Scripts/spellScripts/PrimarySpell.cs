@@ -27,8 +27,6 @@ public class PrimarySpell : MonoBehaviour {
         automa = GetComponent<Automa>();
         burston = GetComponent<Burston>();
         blasteur = GetComponent<Blasteur>();
-
-        // OnPrimaryFire += Testing_OnPrimaryFire;
     }
 
     /* This doesnt have to happen in LateUpdate()! Planning 
@@ -39,19 +37,7 @@ public class PrimarySpell : MonoBehaviour {
         if (gameStateManager.state == GameState.Main) {
             CheckSpellType();
             CheckElementType();
-
-            /* if (player.ability == AbilityState.SpellcastPrimary) {
-                burston.SetStats(true);
-                automa.SetStats(true);
-                blasteur.SetStats(true);
-            }else if (player.ability == AbilityState.SpellcastSecondary) {
-                burston.SetStats(false);
-                automa.SetStats(false);
-                blasteur.SetStats(false);
-            } */
         }
-
-        // Debug.Log((spellInfo.type) + (spellInfo.element));
     }
 
     // Checks Primary Spell Type enum in Player.cs whenever this function is called
@@ -81,11 +67,6 @@ public class PrimarySpell : MonoBehaviour {
             element = "Arcane";
         }
     }
-
-    /* private void Testing_OnPrimaryFire(object sender, EventArgs e) {
-        Debug.Log("Primary spell used.");
-        player.ability = AbilityState.None;
-    } */
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
