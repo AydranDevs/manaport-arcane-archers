@@ -21,7 +21,7 @@ public class Lightspeed : MonoBehaviour {
     }
 
     private void Update() {
-        if (player.auxilaryType == AuxilaryMovementType.Lightspeed && player.ability == AbilityState.AuxilaryMovement) {
+        if (player.auxilaryType == AuxilaryMovementType.BlinkDash && player.ability == AbilityState.AuxilaryMovement) {
             
             player.transform.position += (Vector3)playerMovement.reconstructedMovement * range;
             playerAbilities.abilitiesAvailable = false;

@@ -6,7 +6,7 @@ public enum MovementState { Idle, Walk, Run, Skid }
 public enum DirectionState { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest }
 public enum FacingState { North, East, South, West }
 public enum AbilityState { None, AuxilaryMovement, SpellcastPrimary, SpellcastSecondary }
-public enum AuxilaryMovementType { Spindash, OrbDash, Lightspeed }
+public enum AuxilaryMovementType { Spindash, BlinkDash, Pounce }
 
 public enum PrimarySpellType { Automa, Blasteur, Burston }
 public enum PrimarySpellElement { Arcane, Pyro, Cryo, Toxi, Bolt }
