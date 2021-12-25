@@ -17,6 +17,8 @@ public class Bullet : MonoBehaviour {
     public float critChance;
     public float critDamage;
 
+    public bool crit;
+
     public bool status;
     public string element;
     public float statusChance;
@@ -41,11 +43,15 @@ public class Bullet : MonoBehaviour {
         critChance = e.critChance;
         critDamage = e.critDamage;
 
+        crit = e.crit;
+
         status = e.status;
         element = e.element;
         
         statusChance = e.statusChance;
         dps = e.dps;
+
+        if (crit) damage = critDamage;
     }
 
     public void AutomaBullet_OnAutomaCast(object sender, Automa.OnAutomaCastEventArgs e) {
@@ -80,10 +86,10 @@ public class Bullet : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
-        Dummy dummy = collider.GetComponent<Dummy>();
-        if (dummy != null) {
-            // Hit a dummy
-            dummy.Damage(damage, critDamage, status, element, dps);
+        IDamageable damageable = collider.GetComponent<IDamageable>();
+        if (damageable != null) {
+            // Hit a damagable entity
+            damageable.Damage(damage, critDamage, crit, status, element, dps);
             Destroy(gameObject);
         }
         

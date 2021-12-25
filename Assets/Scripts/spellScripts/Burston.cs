@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random=UnityEngine.Random;
 
 public class Burston : MonoBehaviour {
     private PrimarySpell primary;
@@ -18,9 +19,13 @@ public class Burston : MonoBehaviour {
     public float critChance;
     public float critDamage;
 
+    public bool crit;
+
     public bool status;
     public float statusChance;
     public float dps;
+
+    public int rand;
 
     [SerializeField]
     private Transform PFBullet;
@@ -32,6 +37,8 @@ public class Burston : MonoBehaviour {
         public int baseCost;
         public float critChance;
         public float critDamage;
+
+        public bool crit;
 
         public bool status;
         public string element;
@@ -94,6 +101,9 @@ public class Burston : MonoBehaviour {
             dps = 2f;
         }
 
+        rand = Random.Range(1,10);
+        if(rand == 1) {crit = true;}else {crit = false;}
+
         OnBurstonCast?.Invoke(this, new OnBurstonCastEventArgs {
             // Send spell attributes to bullets fired
             
@@ -102,6 +112,8 @@ public class Burston : MonoBehaviour {
             baseCost = baseCost,
             critChance = critChance,
             critDamage = critDamage,
+
+            crit = crit,
 
             status = status,
             element = e.element,
@@ -154,6 +166,9 @@ public class Burston : MonoBehaviour {
             dps = 2f;
         }
 
+        rand = Random.Range(1,10);
+        if(rand == 1) {crit = true;}else {crit = false;}
+
         OnBurstonCast?.Invoke(this, new OnBurstonCastEventArgs {
             // Send spell attributes to bullets fired
             
@@ -162,6 +177,8 @@ public class Burston : MonoBehaviour {
             baseCost = baseCost,
             critChance = critChance,
             critDamage = critDamage,
+
+            crit = crit,
 
             status = status,
             element = e.element,
