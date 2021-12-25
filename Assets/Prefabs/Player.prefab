@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29131144075423908}
   - component: {fileID: 6710627835437737490}
+  - component: {fileID: 164113302670634764}
   - component: {fileID: 303277092434572762}
   - component: {fileID: 8748948775429690951}
   - component: {fileID: 157315004392795411}
@@ -17,7 +18,6 @@ GameObject:
   - component: {fileID: 6132941125272086960}
   - component: {fileID: 7216965811880539656}
   - component: {fileID: 306731759080797305}
-  - component: {fileID: 164113302670634764}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -65,6 +65,50 @@ MonoBehaviour:
   buttonSlot2: 0
   buttonPause: 0
   buttonMap: 0
+--- !u!114 &164113302670634764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164113302670634765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ba94f2a1bb8ed47b985d7ed7577a80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpLevel: 0
+  xpMax: 0
+  xp: 0
+  healthMax: 0
+  health: 0
+  manaMax: 0
+  mana: 0
+  isOnFire: 0
+  isFreezing: 0
+  isZapped: 0
+  isPoisoned: 0
+  isPyroBoosted: 0
+  isCryoBoosted: 0
+  isBoltBoosted: 0
+  isToxiBoosted: 0
+  isSpeedBoosted: 0
+  isCritBoosted: 0
+  isRegenerating: 0
+  isLashingOut: 0
+  isInvincible: 0
+  isAborbing: 0
+  pyroRes: 0
+  cryoRes: 0
+  boltRes: 0
+  toxiRes: 0
+  arcaneRes: 0
+  movementSp: 0
+  sprintMod: 0
+  dashMod: 0
+  spindashDist: 0
+  blinkdashDist: 0
+  pounceDist: 0
 --- !u!114 &303277092434572762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,50 +276,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0637109, y: 0.40353656}
   m_EdgeRadius: 0
---- !u!114 &164113302670634764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164113302670634765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3ba94f2a1bb8ed47b985d7ed7577a80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xpLevel: 0
-  xpMax: 0
-  xp: 0
-  healthMax: 0
-  health: 0
-  manaMax: 0
-  mana: 0
-  isOnFire: 0
-  isFreezing: 0
-  isZapped: 0
-  isPoisoned: 0
-  isPyroBoosted: 0
-  isCryoBoosted: 0
-  isBoltBoosted: 0
-  isToxiBoosted: 0
-  isSpeedBoosted: 0
-  isCritBoosted: 0
-  isRegenerating: 0
-  isLashingOut: 0
-  isInvincible: 0
-  isAborbing: 0
-  pyroRes: 0
-  cryoRes: 0
-  boltRes: 0
-  toxiRes: 0
-  arcaneRes: 0
-  movementSp: 0
-  sprintMod: 0
-  dashMod: 0
-  spindashDist: 0
-  blinkdashDist: 0
-  pounceDist: 0
 --- !u!1 &448143482381975803
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Legumel : MonoBehaviour, IDamageable {
+public class Molera : MonoBehaviour, IDamageable {
     
     public float hitPointsMax = 10f;
     public float hitPoints;
@@ -119,19 +119,19 @@ public class Legumel : MonoBehaviour, IDamageable {
         This is a 1s timer. every time this timer hits 0,
         it is reset back to 1, and the DamageOverTime method 
         is called. essentially, there is a 1 in 20 chance that
-        the debuff is removed on the first tick of damage. With
+        the debuff is removed on the first tick of damage. with
         every tick of damage, the chance of the debuff getting
         removed is higher, until the dpsCount is zero, where 20s
         have passed and the debuff is removed. 
         */
 
         float timerMax = 1f;
-
+        
         if (hitPoints <= 0f) {
             Die();
             return;
         }
-
+        
         dpsTimer = dpsTimer - Time.deltaTime;
         if (dpsTimer <= 0) {
             if(isOnFire) {DamageOverTime();}
@@ -162,6 +162,4 @@ public class Legumel : MonoBehaviour, IDamageable {
     public void Die() {
         Destroy(gameObject);
     }
-
-
 }
