@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Legumel : MonoBehaviour, IDamageable {
     
-    public float hitPointsMax = 100f;
+    public float hitPointsMax = 10f;
     public float hitPoints;
 
     public float dps;
@@ -73,13 +73,23 @@ public class Legumel : MonoBehaviour, IDamageable {
        if (hitPoints <= 0f) Die();
     }
 
+    // This function is only called if this Monster
+    // need to take damage from a status effect.
+
     public void DamageOverTime() {
+        if (hitPoints <= 0f) {
+            Die();
+            return;
+        }
+
         hitPoints -= dps;
         dpsCount -= 1;
 
         Debug.Log("Damage/sec: " + dps);
         Debug.Log("Health " + hitPoints);
     }
+
+    // this function spawns particles when needed.
 
     private void HandleParticles(string statusType, bool isCrit) {
         if (isCrit) {
@@ -104,7 +114,23 @@ public class Legumel : MonoBehaviour, IDamageable {
     }
 
     private void Update() {
+
+        /* 
+        This is a 1s timer. every time this timer hits 0,
+        it is reset back to 1, and the DamageOverTime method 
+        is called. essentially, there is a 1 in 20 chance that
+        the debuff is removed on the first tick of damage. with
+        every tick of damage, the chance of the debuff getting
+        removed is higher, until the dpsCount is zero, where 20s
+        have passed and the debuff is removed. 
+        */
+
         float timerMax = 1f;
+
+        if (hitPoints <= 0f) {
+            Die();
+            return;
+        }
 
         dpsTimer = dpsTimer - Time.deltaTime;
         if (dpsTimer <= 0) {
@@ -115,11 +141,14 @@ public class Legumel : MonoBehaviour, IDamageable {
 
             int dpsRand = Random.Range(1,dpsCount);
             if(dpsRand == 1) {
+
+                // remove all debuffs
                 isOnFire = false;
                 isFreezing = false;
                 isZapped = false;
                 isPoisoned = false;
 
+                // reset dpsCount
                 dpsCount = dpsCountMax;
             }
             dpsTimer = timerMax;

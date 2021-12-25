@@ -46,8 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a070c91aaa4d8b441b0452b73959d828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPointsMax: 100
+  hitPointsMax: 10
   hitPoints: 10
+  dps: 0
+  dpsTimer: 2
+  dpsCountMax: 20
+  dpsCount: 20
   isOnFire: 0
   isFreezing: 0
   isZapped: 0
