@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public float runDuration;
     public int horizontal;
     public int vertical;
+
+    public event EventHandler<OnDashStartEventArgs> OnDashStart;
+    public class OnDashStartEventArgs : EventArgs {}
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -44,7 +48,9 @@ public class PlayerMovement : MonoBehaviour
             Player.willSkid = true;
             Player.isDashing = true;
             Player.sprintModifier = 2.5f;
-            // ps.Play();
+            
+            // make cool dash particles appear
+            OnDashStart?.Invoke(this, new OnDashStartEventArgs {});
         }
 
         if(Input.GetAxis("Horizontal") > 0f) {
