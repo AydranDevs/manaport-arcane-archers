@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     private Player Player;
     private GameStateManager gameStateManager;
-    // public ParticleSystem ps;
     public VectorValue vectorValue;
 
 
@@ -17,11 +16,16 @@ public class PlayerMovement : MonoBehaviour
     public float angle;
 
     public float runDuration;
+    public bool dashPoofParActive = false;
+    public bool dashDustParActive = false;
     public int horizontal;
     public int vertical;
 
     public event EventHandler<OnDashStartEventArgs> OnDashStart;
     public class OnDashStartEventArgs : EventArgs {}
+
+    public event EventHandler<OnDashEndEventArgs> OnDashEnd;
+    public class OnDashEndEventArgs : EventArgs {}
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -50,7 +54,16 @@ public class PlayerMovement : MonoBehaviour
             Player.sprintModifier = 2.5f;
             
             // make cool dash particles appear
-            OnDashStart?.Invoke(this, new OnDashStartEventArgs {});
+            if (!dashPoofParActive && !dashDustParActive) {
+                OnDashStart?.Invoke(this, new OnDashStartEventArgs {});
+                dashPoofParActive = true;
+                dashDustParActive = true;
+            }
+        }else {
+            dashPoofParActive = false;
+            dashDustParActive = false;
+
+            OnDashEnd?.Invoke(this, new OnDashEndEventArgs {});
         }
 
         if(Input.GetAxis("Horizontal") > 0f) {
