@@ -5,20 +5,23 @@ using UnityEngine;
 public class PlayerAbilities : MonoBehaviour {
 
     private Player player;
+    private Laurie laurie;
     private Controls controls;
     private Spindash spindash;
     private Lightspeed lightspeed;
     
-    public float abilityCooldownLimit = 10; // The default cooldown time after using an ability
+    // public float abilityCooldownLimit = 10; // The default cooldown time after using an ability
     public float abilityCooldown; // Set to the CooldownLimit, default 10 seconds
     public bool abilitiesAvailable = false; // Set to true when the cooldown is over
 
     private void Awake() {
-        abilityCooldown = abilityCooldownLimit; // Sets cooldown time to whatever CooldownLimit is set to
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        laurie = GameObject.FindGameObjectWithTag("Player").GetComponent<Laurie>();
         controls = GameObject.FindGameObjectWithTag("Player").GetComponent<Controls>();
         spindash = GetComponent<Spindash>();
         lightspeed = GetComponent<Lightspeed>();
+
+        abilityCooldown = laurie.abilityCooldownLimit; // Sets cooldown time to whatever CooldownLimit is set to
     }
 
     private void Update() {

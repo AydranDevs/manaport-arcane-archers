@@ -39,7 +39,6 @@ Transform:
   m_Children:
   - {fileID: 4237793257828250911}
   - {fileID: 1415156077723168264}
-  - {fileID: 5645277197777842581}
   - {fileID: 113984744150587579}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,13 +58,14 @@ MonoBehaviour:
   xpLevel: 0
   xpMax: 0
   xp: 0
-  hitPointsMax: 5
+  hitPointsMax: 20
   hitPoints: 0
-  manaPointsMax: 3
+  manaPointsMax: 5
   manaPoints: 0
   movementSp: 0
   sprintMod: 0
   dashMod: 0
+  abilityCooldownLimit: 0
   spindashDist: 0
   blinkdashDist: 0
   pounceDist: 0
@@ -162,6 +162,7 @@ MonoBehaviour:
   vectorValue: {fileID: 11400000, guid: d1763db8f165bb64f9351c5557ec3030, type: 2}
   reconstructedMovement: {x: 0, y: 0}
   angle: 0
+  movementSp: 0
   runDuration: 0
   dashPoofParActive: 0
   dashDustParActive: 0
@@ -497,65 +498,6 @@ MonoBehaviour:
   status: 0
   statusChance: 0
   dps: 0
---- !u!1 &619389738413233937
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5645277197777842581}
-  - component: {fileID: 6656423345903326534}
-  m_Layer: 0
-  m_Name: DebugStats
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5645277197777842581
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619389738413233937}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 29131144075423908}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6656423345903326534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619389738413233937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f1526db04f348b49b4c74d59a183ea1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementType: 0
-  direction: 0
-  facing: 0
-  move: {x: 0, y: 0}
-  speed: 0
-  sprintModifier: 0
-  skidThreshold: 0
-  willSkid: 0
-  reconstructedMovement: {x: 0, y: 0}
-  angle: 0
-  runDuration: 0
-  ability: 0
-  auxilaryType: 0
-  abilityCooldownLimit: 0
-  abilityCooldown: 0
-  abilitiesAvailable: 0
 --- !u!1 &2011035110544577153
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +529,7 @@ Transform:
   - {fileID: 6187421263320647131}
   - {fileID: 2798928599064009068}
   m_Father: {fileID: 29131144075423908}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2011035110544577155
 MonoBehaviour:
@@ -795,7 +737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa2098ce628e70144b89d74841075978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityCooldownLimit: 1
   abilityCooldown: 0
   abilitiesAvailable: 0
 --- !u!114 &5494221786192318203
@@ -810,10 +751,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0680d1a00fc662a47be3b4789952671a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
   speed: 10
   time: 0
-  timeLimiit: 0.5
   dashTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &5948526162681274999
 MonoBehaviour:
@@ -827,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16163ecfce02f642a715c55818f618c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0
   speed: 0
   angle: 0
   dist: 0
+  dashTarget: {x: 0, y: 0, z: 0}

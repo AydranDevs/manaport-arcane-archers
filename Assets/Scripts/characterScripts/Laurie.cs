@@ -12,12 +12,12 @@ public class Laurie : MonoBehaviour, IEnemyDamageable {
     
     // Player health point values
     [Header("Hit Points")]
-    public float hitPointsMax = 5f;
+    public float hitPointsMax = 20f;
     public float hitPoints;
 
     // Player mana point values
     [Header("Mana Points")]
-    public float manaPointsMax = 3f;
+    public float manaPointsMax = 5f;
     public float manaPoints;
 
     // Movement
@@ -25,6 +25,10 @@ public class Laurie : MonoBehaviour, IEnemyDamageable {
     public float movementSp;
     public float sprintMod;
     public float dashMod;
+
+    // Abilities
+    [Header("Abilities")]
+    public float abilityCooldownLimit;
 
     public float spindashDist;
     public float blinkdashDist;
@@ -96,6 +100,10 @@ public class Laurie : MonoBehaviour, IEnemyDamageable {
         MaxHP();
         MaxMP();
 
+        abilityCooldownLimit = 2f;
+
+        spindashDist = 5f;
+
         movementSp = 2f;
         sprintMod = 1.75f;
         dashMod = 2.5f;
@@ -129,6 +137,24 @@ public class Laurie : MonoBehaviour, IEnemyDamageable {
         manaPointsMax += 2f;
     }
     
+    public float CheckRes(float damage, string statusType) {
+        float refactoredDamage;
+        
+        if (statusType == "Pyro") {
+            refactoredDamage = damage * pyroRes;
+        }else if (statusType == "Cryo") {
+            refactoredDamage = damage * cryoRes;
+        }else if (statusType == "Bolt") {
+            refactoredDamage = damage * boltRes;
+        }else if (statusType == "Toxi") {
+            refactoredDamage = damage * toxiRes;
+        }else {
+            refactoredDamage = damage * arcaneRes;
+        }
+
+        return refactoredDamage;
+    }
+
     // When Laurie takes damage, this function is called.
     // it brings in baseDamage, critDamage, statusType and dps 
     // from the bullet that hit her.
@@ -139,18 +165,30 @@ public class Laurie : MonoBehaviour, IEnemyDamageable {
 
        Debug.Log("Damage: " + damage + " | Crit Damage: " + critDamage + "| Crit? " + crit + " | Status? " + status + " | Element: " + statusType + " | Damage/sec: " + dps); 
 
+       // Check resistances and buffs.
+
+       float refactoredDamage = CheckRes(damage, statusType);
+
        // Applies debuffs.
 
-        if (statusType == "Pyro") {isOnFire = true;}
-        if (statusType == "Cryo") {isFreezing = true;}
-        if (statusType == "Bolt") {isZapped = true;}
-        if (statusType == "Toxi") {isPoisoned = true;}
+        if (statusType == "Pyro") {
+            isOnFire = true;
+        }
+        if (statusType == "Cryo") {
+            isFreezing = true;
+        }
+        if (statusType == "Bolt") {
+            isZapped = true;
+        }
+        if (statusType == "Toxi") {
+            isPoisoned = true;
+        }
 
         this.dps = dps;
 
        // Subtracts the bullet damage from hp.
 
-       hitPoints -= damage;
+       hitPoints -= refactoredDamage;
 
        // Logs final hp calc.
 
