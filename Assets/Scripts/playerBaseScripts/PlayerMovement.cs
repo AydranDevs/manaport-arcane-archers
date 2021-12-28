@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     private Player Player;
+    private Laurie laurie;
     private GameStateManager gameStateManager;
     public VectorValue vectorValue;
 
@@ -14,7 +15,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Vector2 reconstructedMovement;
     public float angle;
-
+    
+    public float movementSp;
     public float runDuration;
     public bool dashPoofParActive = false;
     public bool dashDustParActive = false;
@@ -30,20 +32,17 @@ public class PlayerMovement : MonoBehaviour
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         Player = GetComponent<Player>();
+        laurie = GetComponent<Laurie>();
         // ps = GameObject.FindGameObjectWithTag("DashdustPS").GetComponent<ParticleSystem>();
         Player.transform.position = vectorValue.initialValue;
     }
 
     public void Move(float d) {
-        
-        // Skidding
 
         if(Player.movementType == MovementState.Run){
-            runDuration = runDuration + Time.deltaTime;
             runDuration += Time.deltaTime;
         }else {
             runDuration = 0;
-            Player.sprintModifier = 1.75f;
             Player.willSkid = false;
             Player.isDashing = false;
         }
@@ -51,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         if(runDuration >= Player.skidThreshold){
             Player.willSkid = true;
             Player.isDashing = true;
-            Player.sprintModifier = 2.5f;
+            // Player.sprintModifier = 2.5f;
             
             // make cool dash particles appear
             if (!dashPoofParActive && !dashDustParActive) {
@@ -99,14 +98,15 @@ public class PlayerMovement : MonoBehaviour
         float yDiff = Player.move.y;
         angle = (float)(Mathf.Atan2(yDiff, xDiff));
 
-        float dist;
-        if (Player.movementType == MovementState.Run) {
-            dist = Player.sprintModifier;
+        if (Player.isDashing == true) {
+            movementSp = laurie.movementSp * laurie.dashMod;
+        }else if (Player.movementType == MovementState.Run) {
+            movementSp = laurie.movementSp * laurie.sprintMod;
         }else {
-            dist = 1;
+            movementSp = laurie.movementSp;
         }
 
-        reconstructedMovement = new Vector2(Mathf.Cos(angle) * dist, Mathf.Sin(angle) * dist);
-        rb.MovePosition(new Vector2(position.x, position.y) + ((reconstructedMovement * Player.speed) * d));        
+        reconstructedMovement = new Vector2(Mathf.Cos(angle) * movementSp, Mathf.Sin(angle) * movementSp);
+        rb.MovePosition(new Vector2(position.x, position.y) + ((reconstructedMovement * laurie.movementSp) * d));        
     }
 }

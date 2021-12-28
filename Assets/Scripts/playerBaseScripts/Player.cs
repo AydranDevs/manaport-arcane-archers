@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MovementState { Idle, Walk, Run, Skid }
+public enum MovementState { Idle, Walk, Run, Dash, Skid }
 public enum DirectionState { North, NorthEast, East, SouthEast, South, SouthWest, West, NorthWest }
 public enum FacingState { North, East, South, West }
 public enum AbilityState { None, AuxilaryMovement, SpellcastPrimary, SpellcastSecondary }
@@ -23,9 +23,9 @@ public class Player : MonoBehaviour
     public DirectionState direction = DirectionState.South; // sets "direction" to South / Initializes DirectionState
     public FacingState facing = FacingState.South; // sets "facing" to South / Initializes FacingState
     public Vector2 move = new Vector2(0, 0); // Used in playerMovement, determines the directin the player is moving
-    public float speed = 0.1f; // Used in playerMovement, Units/sec
+    // public float speed = 0.1f; // Used in playerMovement, Units/sec
     public float sprintModifier = 1.75f; // Used in playerMovement, multiplies speed by value set here
-    public float skidThreshold = 8; // Used in playerMovement, how long the player must be sprinting for to make them skid to a stop and turn around upon stopping or pressing the opposite direction.
+    public float skidThreshold = 8f; // Used in playerMovement, how long the player must be sprinting for to make them skid to a stop and turn around upon stopping or pressing the opposite direction.
     public bool willSkid = false;
     public bool isDashing = false;
 

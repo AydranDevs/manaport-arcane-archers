@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Legumel : MonoBehaviour, IDamageable {
+public class Legumel : MonoBehaviour, IPlayerDamageable {
     
     public float hitPointsMax = 10f;
     public float hitPoints;

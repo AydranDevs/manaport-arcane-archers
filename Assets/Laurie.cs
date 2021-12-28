@@ -2,21 +2,76 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ribbuki : MonoBehaviour, IPlayerDamageable {
+public class Laurie : MonoBehaviour, IEnemyDamageable {
+
+    // Player experience point values
+    [Header("Experience Points")]
+    public float xpLevel;
+    public float xpMax;
+    public float xp;
     
-    public float hitPointsMax = 10f;
+    // Player health point values
+    [Header("Hit Points")]
+    public float hitPointsMax = 5f;
     public float hitPoints;
 
+    // Player mana point values
+    [Header("Mana Points")]
+    public float manaPointsMax = 3f;
+    public float manaPoints;
+
+    // Movement
+    [Header("Movement")]
+    public float movementSp;
+    public float sprintMod;
+    public float dashMod;
+
+    public float spindashDist;
+    public float blinkdashDist;
+    public float pounceDist;
+
+    // Defenses
+    [Header("Defenses")]
+    public float pyroRes = 0f;
+    public float cryoRes = 0f;
+    public float boltRes = 0f;
+    public float toxiRes = 0f;
+    public float arcaneRes = 0f;
+
+    // Debuffs
+    [Header("Debuffs")]
+    public bool isOnFire = false;
+    public bool isFreezing = false;
+    public bool isZapped = false;
+    public bool isPoisoned = false;
+
+    // Buffs
+    [Header("Buffs")]
+    public bool isPyroBoosted = false; // Provides a bit of defense against pyro - increases damage dealt by pyro spells
+    public bool isCryoBoosted = false; // Provides a bit of defense against cryo - increases damage dealt by cryo spells
+    public bool isBoltBoosted = false; // Provides a bit of defense against bolt - increases damage dealt by bolt spells
+    public bool isToxiBoosted = false; // Provides a bit of defense against toxi - increases damage dealt by toxi spells
+
+    [Tooltip("increases the player's movement speed and sprint modifier by a set amount")]
+    public bool isSpeedBoosted = false;
+    [Tooltip("Increases crit chance and crit damage of all spells by a set amount")]
+    public bool isCritBoosted = false;
+    [Tooltip("Regenerates a fixed amount of health over a fixed amount of time")]
+    public bool isRegenerating = false;
+    [Tooltip("Increases overall damage and makes the player nearly 'invinicible', all damage taken is added together and instead taken over time. Similar to Payday 2's Stoic. also causes some visual things you'll see later.")]
+    public bool isLashingOut = false;
+    [Tooltip("Makes the player invulnerable to ALL types of damage for a short amount of time")]
+    public bool isInvincible = false;
+    [Tooltip("Converts all damage taken to shield for a short amount of time")]
+    public bool isAbsorbing = false;
+
+    
+    
     public float dps;
     public float dpsTimer = 1f;
 
     public int dpsCountMax = 20;
     public int dpsCount = 20;
-
-    public bool isOnFire = false;
-    public bool isFreezing = false;
-    public bool isZapped = false;
-    public bool isPoisoned = false;
 
     private bool fireParActive = false;
     private bool iceParActive = false;
@@ -38,12 +93,45 @@ public class Ribbuki : MonoBehaviour, IPlayerDamageable {
     private Transform pfCrit;
 
     private void Awake() {
+        MaxHP();
+        MaxMP();
+
+        movementSp = 2f;
+        sprintMod = 1.75f;
+        dashMod = 2.5f;
+    }
+
+    public void MaxHP() {
         hitPoints = hitPointsMax;
     }
+
+    public void MaxMP() {
+        manaPoints = manaPointsMax;
+    }
+
+    public void AddXP(string type, float amount) {
+        if (type == "points") {
+            xp += amount;
+        }else if (type == "levels") {
+            xpLevel += amount;
+        }else {
+            Debug.Log("Error! incorrect xp type given. (Laurie.cs)");
+            return;
+        }
+    }
+
+    public void LevelUp() {
+        xp = 0f;
+        xpLevel++;
+        xpMax = xpMax * 2;
+
+        hitPointsMax += 2f;
+        manaPointsMax += 2f;
+    }
     
-    // When this Monster takes damage, this function is called.
+    // When Laurie takes damage, this function is called.
     // it brings in baseDamage, critDamage, statusType and dps 
-    // from the bullet that hit it.
+    // from the bullet that hit her.
 
     public void Damage(float damage, float critDamage, bool crit, bool status, string statusType, float dps) {
 
@@ -69,12 +157,10 @@ public class Ribbuki : MonoBehaviour, IPlayerDamageable {
        Debug.Log("Health: " + hitPoints);
 
        HandleParticles(statusType, crit);
-
-       if (hitPoints <= 0f) Die();
     }
 
-    // This function is only called if this Monster
-    // need to take damage from a status effect.
+    // This function is only called if Laurie
+    // needs to take damage from a status effect.
 
     public void DamageOverTime() {
         if (hitPoints <= 0f) {
@@ -114,6 +200,11 @@ public class Ribbuki : MonoBehaviour, IPlayerDamageable {
     }
 
     private void Update() {
+        
+        if (hitPoints <= 0f) {
+            Die();
+            return;
+        }
 
         /* 
         This is a 1s timer. every time this timer hits 0,
@@ -126,12 +217,7 @@ public class Ribbuki : MonoBehaviour, IPlayerDamageable {
         */
 
         float timerMax = 1f;
-        
-        if (hitPoints <= 0f) {
-            Die();
-            return;
-        }
-        
+
         dpsTimer = dpsTimer - Time.deltaTime;
         if (dpsTimer <= 0) {
             if(isOnFire) {DamageOverTime();}
@@ -140,6 +226,7 @@ public class Ribbuki : MonoBehaviour, IPlayerDamageable {
             if(isPoisoned) {DamageOverTime();}
 
             int dpsRand = Random.Range(1,dpsCount);
+            
             if(dpsRand == 1) {
 
                 // remove all debuffs

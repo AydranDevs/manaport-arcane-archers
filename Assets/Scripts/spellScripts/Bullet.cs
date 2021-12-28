@@ -86,10 +86,10 @@ public class Bullet : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
-        IDamageable damageable = collider.GetComponent<IDamageable>();
-        if (damageable != null) {
+        IPlayerDamageable playerDamageable = collider.GetComponent<IPlayerDamageable>();
+        if (playerDamageable != null) {
             // Hit a damagable entity
-            damageable.Damage(damage, critDamage, crit, status, element, dps);
+            playerDamageable.Damage(damage, critDamage, crit, status, element, dps);
             Destroy(gameObject);
         }
         

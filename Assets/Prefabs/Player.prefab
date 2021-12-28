@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 29131144075423908}
+  - component: {fileID: 3866531759002883635}
   - component: {fileID: 6710627835437737490}
-  - component: {fileID: 164113302670634764}
   - component: {fileID: 303277092434572762}
   - component: {fileID: 8748948775429690951}
   - component: {fileID: 157315004392795411}
@@ -44,6 +44,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3866531759002883635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164113302670634765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcc9590a5ab7c44aa00f182fcd03e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpLevel: 0
+  xpMax: 0
+  xp: 0
+  hitPointsMax: 5
+  hitPoints: 0
+  manaPointsMax: 3
+  manaPoints: 0
+  movementSp: 0
+  sprintMod: 0
+  dashMod: 0
+  spindashDist: 0
+  blinkdashDist: 0
+  pounceDist: 0
+  pyroRes: 0
+  cryoRes: 0
+  boltRes: 0
+  toxiRes: 0
+  arcaneRes: 0
+  isOnFire: 0
+  isFreezing: 0
+  isZapped: 0
+  isPoisoned: 0
+  isPyroBoosted: 0
+  isCryoBoosted: 0
+  isBoltBoosted: 0
+  isToxiBoosted: 0
+  isSpeedBoosted: 0
+  isCritBoosted: 0
+  isRegenerating: 0
+  isLashingOut: 0
+  isInvincible: 0
+  isAbsorbing: 0
+  dps: 0
+  dpsTimer: 1
+  dpsCountMax: 20
+  dpsCount: 20
+  parent: {fileID: 0}
+  pfDust: {fileID: 0}
+  pfFire: {fileID: 0}
+  pfIce: {fileID: 0}
+  pfLightning: {fileID: 0}
+  pfToxic: {fileID: 0}
+  pfCrit: {fileID: 0}
 --- !u!114 &6710627835437737490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,50 +121,6 @@ MonoBehaviour:
   buttonSlot2: 0
   buttonPause: 0
   buttonMap: 0
---- !u!114 &164113302670634764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164113302670634765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3ba94f2a1bb8ed47b985d7ed7577a80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xpLevel: 0
-  xpMax: 0
-  xp: 0
-  healthMax: 0
-  health: 0
-  manaMax: 0
-  mana: 0
-  isOnFire: 0
-  isFreezing: 0
-  isZapped: 0
-  isPoisoned: 0
-  isPyroBoosted: 0
-  isCryoBoosted: 0
-  isBoltBoosted: 0
-  isToxiBoosted: 0
-  isSpeedBoosted: 0
-  isCritBoosted: 0
-  isRegenerating: 0
-  isLashingOut: 0
-  isInvincible: 0
-  isAborbing: 0
-  pyroRes: 0
-  cryoRes: 0
-  boltRes: 0
-  toxiRes: 0
-  arcaneRes: 0
-  movementSp: 0
-  sprintMod: 0
-  dashMod: 0
-  spindashDist: 0
-  blinkdashDist: 0
-  pounceDist: 0
 --- !u!114 &303277092434572762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +137,6 @@ MonoBehaviour:
   direction: 4
   facing: 2
   move: {x: 0, y: 0}
-  speed: 3.5
   sprintModifier: 1.75
   skidThreshold: 8
   willSkid: 0

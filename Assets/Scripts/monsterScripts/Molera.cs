@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Molera : MonoBehaviour, IDamageable {
+public class Molera : MonoBehaviour, IPlayerDamageable {
     
     public float hitPointsMax = 10f;
     public float hitPoints;
