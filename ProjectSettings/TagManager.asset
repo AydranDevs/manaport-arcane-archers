@@ -15,6 +15,8 @@ TagManager:
   - SpellOriginPos
   - DummyScript
   - Legumel
+  - BulletShooterTarget
+  - BulletShooter
   layers:
   - Default
   - TransparentFX

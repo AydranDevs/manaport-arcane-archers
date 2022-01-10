@@ -1355,6 +1355,36 @@ Transform:
   m_Father: {fileID: 1290111570}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &945724007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 945724008}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: BulletShooterTarget
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &945724008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945724007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1290111570}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1020285747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1424,7 +1454,7 @@ GameObject:
   - component: {fileID: 1290111569}
   m_Layer: 0
   m_Name: BulletShooter
-  m_TagString: Untagged
+  m_TagString: BulletShooter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1442,6 +1472,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootDir: {x: 0, y: 0, z: 0}
+  pfBullet: {fileID: 7341119615130547138, guid: 854bda8491f1ba9419e802b94f5ea2ff, type: 3}
+  baseDamage: 10
+  baseCooldown: 0
+  baseCost: 0
+  critChance: 0
+  critDamage: 0
+  crit: 0
+  status: 0
+  element: Pyro
+  statusChance: 0
+  dps: 2
+  limit: 5
+  time: 0
 --- !u!4 &1290111570
 Transform:
   m_ObjectHideFlags: 0
@@ -1450,10 +1493,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290111568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 159.81807, y: 1.506042, z: 5.132649}
+  m_LocalPosition: {x: 152.37, y: 0.22, z: 5.132649}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 600768446}
+  - {fileID: 945724008}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 6132941125272086960}
   - component: {fileID: 7216965811880539656}
   - component: {fileID: 306731759080797305}
+  - component: {fileID: 4848127566673774633}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -92,13 +93,13 @@ MonoBehaviour:
   dpsTimer: 1
   dpsCountMax: 20
   dpsCount: 20
-  parent: {fileID: 0}
-  pfDust: {fileID: 0}
-  pfFire: {fileID: 0}
-  pfIce: {fileID: 0}
-  pfLightning: {fileID: 0}
-  pfToxic: {fileID: 0}
-  pfCrit: {fileID: 0}
+  parent: {fileID: 29131144075423908}
+  pfDust: {fileID: 1568637382339088924, guid: 65fea28058278cf4aba4e5542901860e, type: 3}
+  pfFire: {fileID: 3723308375545555912, guid: 1439776d9ff79cc429fe875a0cdffdf6, type: 3}
+  pfIce: {fileID: 9098321865381321078, guid: 48b86c8b627cac24a9151f0e3ef65827, type: 3}
+  pfLightning: {fileID: 1621370500516721135, guid: f7ed38362a227284a9d2c2c505e4eb40, type: 3}
+  pfToxic: {fileID: 3197205075778771278, guid: e7941d674ec2fd64995b95d550290e9f, type: 3}
+  pfCrit: {fileID: 9107984262404448853, guid: b09c1f01de0e07248be747b389a84a0e, type: 3}
 --- !u!114 &6710627835437737490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +293,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.97192097}
+  m_Offset: {x: 0, y: 0.030451834}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -303,7 +304,33 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0637109, y: 0.40353656}
+  m_Size: {x: 1.0637109, y: 2.3115387}
+  m_EdgeRadius: 0
+--- !u!61 &4848127566673774633
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164113302670634765}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
 --- !u!1 &448143482381975803
 GameObject:

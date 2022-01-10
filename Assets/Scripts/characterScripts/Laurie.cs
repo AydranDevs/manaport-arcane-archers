@@ -159,7 +159,11 @@ public class Laurie : MonoBehaviour, IEnemyDamageable {
     // it brings in baseDamage, critDamage, statusType and dps 
     // from the bullet that hit her.
 
-    public void Damage(float damage, float critDamage, bool crit, bool status, string statusType, float dps) {
+    public void Damage(float damage, float critDamage, bool crit, bool status, string statusType, float dps, bool castByPlayer) {
+
+        // If hit by a bullet cast by the caster, stop here.
+        
+        if (castByPlayer) return;
 
         // Logs the bullet stats on hit.
 

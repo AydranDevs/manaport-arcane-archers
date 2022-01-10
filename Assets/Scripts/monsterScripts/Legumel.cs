@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,20 +23,16 @@ public class Legumel : MonoBehaviour, IPlayerDamageable {
     private bool iceParActive = false;
     private bool toxicParActive = false;
 
-    public Transform parent;
+    public event EventHandler<OnLegumelSummonParticlesEventArgs> OnLegumelSummonParticles;
+    public class OnLegumelSummonParticlesEventArgs : EventArgs {
+        public string particleType;
+    }
 
-    [SerializeField]
-    private Transform pfDust;
-    [SerializeField]
-    private Transform pfFire;
-    [SerializeField]
-    private Transform pfIce;
-    [SerializeField]
-    private Transform pfLightning;
-    [SerializeField]
-    private Transform pfToxic;
-    [SerializeField]
-    private Transform pfCrit;
+    public event EventHandler<OnLegumelDestroyParticlesEventArgs> OnLegumelDestroyParticles;
+    public class OnLegumelDestroyParticlesEventArgs : EventArgs {
+        public string particleType;
+        public bool persist;
+    }
 
     private void Awake() {
         hitPoints = hitPointsMax;
@@ -51,12 +48,41 @@ public class Legumel : MonoBehaviour, IPlayerDamageable {
 
        Debug.Log("Damage: " + damage + " | Crit Damage: " + critDamage + "| Crit? " + crit + " | Status? " + status + " | Element: " + statusType + " | Damage/sec: " + dps); 
 
-       // Applies debuffs.
+       // If crit, summon crit particles
+       
+       if (crit) {
+           OnLegumelSummonParticles?.Invoke(this, new OnLegumelSummonParticlesEventArgs {
+               particleType = "Crit"
+            });
+       }
+       
+       // Applies debuff and summon particles
 
-        if (statusType == "Pyro") {isOnFire = true;}
-        if (statusType == "Cryo") {isFreezing = true;}
-        if (statusType == "Bolt") {isZapped = true;}
-        if (statusType == "Toxi") {isPoisoned = true;}
+        if (statusType == "Pyro") {
+            isOnFire = true;
+            OnLegumelSummonParticles?.Invoke(this, new OnLegumelSummonParticlesEventArgs {
+                particleType = statusType
+            });
+        }else if (statusType == "Cryo") {
+            isFreezing = true;
+            OnLegumelSummonParticles?.Invoke(this, new OnLegumelSummonParticlesEventArgs {
+                particleType = statusType
+            });
+        }else if (statusType == "Bolt") {
+            isZapped = true;
+            OnLegumelSummonParticles?.Invoke(this, new OnLegumelSummonParticlesEventArgs {
+                particleType = statusType
+            });
+        }else if (statusType == "Toxi") {
+            isPoisoned = true;
+            OnLegumelSummonParticles?.Invoke(this, new OnLegumelSummonParticlesEventArgs {
+                particleType = statusType
+            });
+        }else { // if no debuff, assume Arcane.
+            OnLegumelSummonParticles?.Invoke(this, new OnLegumelSummonParticlesEventArgs {
+                particleType = "Arcane"
+            });
+        }
 
         this.dps = dps;
 
@@ -67,8 +93,6 @@ public class Legumel : MonoBehaviour, IPlayerDamageable {
        // Logs final hp calc.
 
        Debug.Log("Health: " + hitPoints);
-
-       HandleParticles(statusType, crit);
 
        if (hitPoints <= 0f) Die();
     }
@@ -87,30 +111,6 @@ public class Legumel : MonoBehaviour, IPlayerDamageable {
 
         Debug.Log("Damage/sec: " + dps);
         Debug.Log("Health " + hitPoints);
-    }
-
-    // this function spawns particles when needed.
-
-    private void HandleParticles(string statusType, bool isCrit) {
-        if (isCrit) {
-            Transform crit = Instantiate(pfCrit, GetPosition(), Quaternion.identity, parent);
-        }
-        
-        if (statusType == "Arcane") { 
-            Transform dust = Instantiate(pfDust, GetPosition(), Quaternion.identity, parent);
-        }else if (isOnFire && !fireParActive) {
-            Transform fire = Instantiate(pfFire, GetPosition(), new Quaternion(-1f, 0f, 0f, 1f), parent);
-            fireParActive = true;
-        }else if (isFreezing && !iceParActive) {
-            Transform ice = Instantiate(pfIce, GetPosition(), Quaternion.identity, parent);
-            iceParActive = true;
-        }else if (isZapped) {
-            Transform lightning = Instantiate(pfLightning, GetPosition(), Quaternion.identity, parent);
-        }else if (isPoisoned && !toxicParActive) {
-            Transform toxic = Instantiate(pfToxic, GetPosition(), Quaternion.identity, parent);
-            toxicParActive = true;
-        }
-        
     }
 
     private void Update() {
@@ -139,14 +139,30 @@ public class Legumel : MonoBehaviour, IPlayerDamageable {
             if(isZapped) {DamageOverTime();}
             if(isPoisoned) {DamageOverTime();}
 
-            int dpsRand = Random.Range(1,dpsCount);
+            int dpsRand = UnityEngine.Random.Range(1,dpsCount);
             if(dpsRand == 1) {
 
                 // remove all debuffs
                 isOnFire = false;
+                OnLegumelDestroyParticles?.Invoke(this, new OnLegumelDestroyParticlesEventArgs {
+                    particleType = "Pyro",
+                    persist = false
+                });
                 isFreezing = false;
+                OnLegumelDestroyParticles?.Invoke(this, new OnLegumelDestroyParticlesEventArgs {
+                    particleType = "Cryo",
+                    persist = false
+                });
                 isZapped = false;
+                OnLegumelDestroyParticles?.Invoke(this, new OnLegumelDestroyParticlesEventArgs {
+                    particleType = "Bolt",
+                    persist = false
+                });
                 isPoisoned = false;
+                OnLegumelDestroyParticles?.Invoke(this, new OnLegumelDestroyParticlesEventArgs {
+                    particleType = "Toxi",
+                    persist = false
+                });
 
                 // reset dpsCount
                 dpsCount = dpsCountMax;
