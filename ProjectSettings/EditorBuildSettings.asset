@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LaurieHouse.unity
     guid: 1ebbb0cb9ae79a946b7308bd8742b634
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HydrouniaRaftcity.unity
     guid: 0e1cd94b145644b47bff962145768cee
+  - enabled: 1
+    path: Assets/Scenes/Testroom.unity
+    guid: eb4bcf0656e766c4bb87156426382b13
   m_configObjects: {}
