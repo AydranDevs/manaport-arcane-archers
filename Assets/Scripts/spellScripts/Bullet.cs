@@ -29,12 +29,12 @@ public class Bullet : MonoBehaviour {
     private bool castByPlayer;
 
     private void Awake() {
-        bulletShooter = GameObject.FindGameObjectWithTag("BulletShooter").GetComponent<BulletShooter>();
+        // bulletShooter = GameObject.FindGameObjectWithTag("BulletShooter").GetComponent<BulletShooter>();
 
         burston = GameObject.FindGameObjectWithTag("Spellcaster").GetComponent<Burston>();
         automa = GameObject.FindGameObjectWithTag("Spellcaster").GetComponent<Automa>();
 
-        bulletShooter.OnSpellCast += SpellBullet_OnSpellCast;
+        // bulletShooter.OnSpellCast += SpellBullet_OnSpellCast;
 
         burston.OnBurstonCast += BurstonBullet_OnBurstonCast;
         automa.OnAutomaCast += AutomaBullet_OnAutomaCast;
