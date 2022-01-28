@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 2058994822690584970}
   - component: {fileID: 5408719225426371471}
   - component: {fileID: 5408719225426371470}
+  - component: {fileID: 8460715201125707236}
   m_Layer: 0
   m_Name: Molera
   m_TagString: Untagged
@@ -152,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9ad27f8be28fc43b4c5f9c6cbd08a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewRadius: 0
 --- !u!114 &2058994822690584970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,3 +228,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.13, y: 2.25}
   m_EdgeRadius: 0
+--- !u!58 &8460715201125707236
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5408719225426371469}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

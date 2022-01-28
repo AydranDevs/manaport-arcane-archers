@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laurie : MonoBehaviour, IEnemyDamageable {
+public class Laurie : EnemyTarget, IEnemyDamageable {
 
     // Player experience point values
     [Header("Experience Points")]
