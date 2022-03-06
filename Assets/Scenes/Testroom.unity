@@ -3766,6 +3766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Legumel
       objectReference: {fileID: 0}
+    - target: {fileID: 9154113924638106254, guid: 92383330add830048834924442e266c7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92383330add830048834924442e266c7, type: 3}
 --- !u!1 &2111181803
@@ -4181,6 +4185,18 @@ PrefabInstance:
     - target: {fileID: 4880039849312698553, guid: 92383330add830048834924442e266c7, type: 3}
       propertyPath: m_Name
       value: Legumel AI Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880039849749460568, guid: 92383330add830048834924442e266c7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880039849749460570, guid: 92383330add830048834924442e266c7, type: 3}
+      propertyPath: m_Name
+      value: LegumelAnimator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6872371772960072766, guid: 92383330add830048834924442e266c7, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92383330add830048834924442e266c7, type: 3}

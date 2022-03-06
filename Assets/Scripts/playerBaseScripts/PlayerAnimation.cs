@@ -12,7 +12,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         gameStateManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManager>();
         Player = GetComponent<Player>();
-        animator = GameObject.FindGameObjectWithTag("PlayerAnimator").GetComponent<Animator>(); //instantiates Animator GameObject
+        animator = GameObject.FindGameObjectWithTag("PlayerAnimator").GetComponent<Animator>(); 
     }
 
     void Update()
