@@ -12,13 +12,14 @@ public class LegumelAnimation : MonoBehaviour {
     private void Awake() {
         gameStateManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStateManager>();
         legumelAI = GetComponent<LegumelAI>();
+        stateHandler = GetComponent<LegumelAIStateHandler>();
         animator = GetComponentInChildren<Animator>(); 
     }
 
     void Update() 
     {
         if (gameStateManager.state == GameState.Main) { // check if the game isnt paused
-            AnimateLegumel();
+            this.AnimateLegumel();
         }
     }
 

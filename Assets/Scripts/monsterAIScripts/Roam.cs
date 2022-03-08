@@ -33,35 +33,45 @@ public class Roam : MonoBehaviour {
         roamDist = e.dist;
         isMoving = true;
         awaitingDir = true;
-        Debug.Log("check");
     }
 
     private void Update() {
+        
+        if (!isMoving) {
+            legumelAI.stateHandler.aIMovementState = AIMovementState.Idle;
+            legumelAI.move = new Vector2(0, 0);
+
+            return;
+        }
+        
         if (isMoving) {
             if (awaitingDir) {
                 int rand = UnityEngine.Random.Range(1, 9);
                 targetPos = GetRandomDir(rand);
-                awaitingDir = false;
-            } else {
+                
                 legumelAI.stateHandler.aIMovementState = AIMovementState.Walk;
-                // Debug.Log(targetPos);
+                
+                awaitingDir = false;
+            }
+                
+            
+            legumelAI.move = new Vector2(horizontal, vertical);
+            // Debug.Log(targetPos);
 
-                time = time - Time.deltaTime;
+            time = time - Time.deltaTime;
 
-                float step =  speed * Time.deltaTime; // calculate distance to move
-                legumel.transform.position = Vector3.MoveTowards(legumel.transform.position, targetPos, step);
+            float step =  speed * Time.deltaTime; // calculate distance to move
+            legumel.transform.position = Vector3.MoveTowards(legumel.transform.position, targetPos, step);
 
-                if (time <= 0f) {
-                    // time over
-                    time = 2f;
-                    awaitingDir = false;
-                    isMoving = false;
-                    legumelAI.stateHandler.aIMovementState = AIMovementState.Idle;
-                }
+            if (time <= 0f) {
+                // time over
+                time = 2f;
+                awaitingDir = false;
+                isMoving = false;
             }
         }
 
-        legumelAI.move = new Vector2(horizontal, vertical);
+        Debug.Log(legumelAI.stateHandler.aIMovementState);
     }
 
     // this function gets a random position of the 8.
