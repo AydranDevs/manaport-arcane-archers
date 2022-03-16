@@ -56,6 +56,14 @@ public class Roam : MonoBehaviour {
                 
             
             legumelAI.move = new Vector2(horizontal, vertical);
+
+            // determines what direction the monster is facing
+            if (legumelAI.move.y == 1) legumelAI.stateHandler.aIFacingState = AIFacingState.North;
+            if (legumelAI.move.y == -1) legumelAI.stateHandler.aIFacingState = AIFacingState.South;
+            if (legumelAI.move.x == 1) legumelAI.stateHandler.aIFacingState = AIFacingState.East;
+            if (legumelAI.move.x == -1) legumelAI.stateHandler.aIFacingState = AIFacingState.West;
+            
+
             // Debug.Log(targetPos);
 
             time = time - Time.deltaTime;
@@ -71,7 +79,7 @@ public class Roam : MonoBehaviour {
             }
         }
 
-        Debug.Log(legumelAI.stateHandler.aIMovementState);
+        // Debug.Log(legumelAI.stateHandler.aIMovementState);
     }
 
     // this function gets a random position of the 8.
